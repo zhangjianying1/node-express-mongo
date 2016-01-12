@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap-theme.css')
+    script(type='text/javascript', src='/javascripts/jquery.js')
+    script(type='text/javascript', src='/javascripts/bootstrap.js')
+
+    block script
+  body
+    .container
+      div.page-header
+        .row.bg-primary
+          h1.col-sm-8 #{title}
+          form.col-sm-4
+            .form-group
+              .col-sm-10
+                input.form-control(type='text', name='q', placeholder='input')
+              .col-sm-2
+                button.btn.btn-primary(type='submit') search
+    block content
+    .container
+      .nab-bar
+        .nav-tab
+        .navbar-right
+          if user
+            span #{user.name}, welcom
+            a(href='/number') number center
+            a(href='/login/out') LoginOut
+          else 
+            a(href='/register') Register
+            a(href='/login/in') Login

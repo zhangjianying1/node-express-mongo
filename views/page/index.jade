@@ -1,0 +1,18 @@
+extends ../layout
+block script
+
+block content
+	.container
+		each item in movies
+			.clearfix
+				h2.pull-left #{item.name}  
+				a.pull-right(href='/movie/list/#{item._id}') more
+			each movie in item.movies
+				div.row
+					.col-sm-2
+						a(href='/detail/#{movie._id}')
+							img.img-thumbnail(src='#{movie.url}')
+					.col-sm-10
+						p
+							a(href='/detail/#{movie._id}') #{movie.title}
+						p $#{movie.sellprice}

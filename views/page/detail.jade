@@ -1,0 +1,66 @@
+extend ../layout
+block script
+	script(type='text/javascript', src='/javascripts/detail.js')
+block content
+	.container
+		.row
+			.col-sm-6
+				img(src='#{movie.banner}', width='100%')
+			.col-sm-6
+				h2 #{movie.title}
+				p #{movie.dirs}
+				p #{movie.year}
+				p $#{movie.sellprice}
+				p pv:#{movie.pv}
+				p 
+					a.btn.btn-primary(href='/cart/add/#{movie._id}') add cart
+				p 
+					a.btn.btn-primary(href='/movie/buy/#{movie._id}') buy
+				if comments
+					.panel.panel-default
+						.panel-body
+							each comment in comments
+								.clearfix
+									.col-sm-2
+										a.reply(href='#comment', data-pid='#{comment._id}', data-cid='#{comment.from._id}')
+											img(src='http://img.mukewang.com/user/5344e6d10001867401400140-80-80.jpg', width='100%')
+									.col-sm-10
+										strong #{comment.from.name}
+										p #{comment.content}
+								if comment.replys && comment.replys.length > 0
+									each reply in comment.replys
+										.clearfix.col-sm-offset-2
+											.col-sm-2
+												a(href='#comment', data-pid='#{comment._id}', data-cid='#{reply.from._id}')
+													img(src='http://img.mukewang.com/user/5344e6d10001867401400140-80-80.jpg', width='100%')
+											.col-sm-10
+												strong 
+													| #{reply.from.name} 
+													span 回复 
+													| #{reply.to.name} :
+												p #{reply.content}	
+								hr
+				nav
+					ul.pagination.pagination-sm 
+						- for (var i = 0; i < pages; i ++) { 
+						
+						if (i == p)
+							li.active
+								a(href='/detail/#{movie._id}?p=#{i}') #{i + 1}
+						else
+							li
+								a(href='/detail/#{movie._id}?p=#{i}') #{i + 1}
+
+						- }
+				.row(id='#comment')
+					h2 Comment
+					form(action='/goodscomment', method='post')
+						input(type='hidden', name='movie', value='#{movie._id}')
+						
+						.form-group
+							textarea.col-sm-6(rows='6', name='content')
+						if user
+							input(type='hidden', name='user', value='#{user._id}')
+							button.btn.btn-primary(type='submit') submit
+						else
+							a(href='/login/in') goto login

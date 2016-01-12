@@ -1,0 +1,46 @@
+extend ../layout
+block content
+	.container
+		form.form-horizontal(action='/admin/new', method='post')
+			input(type='hidden', value='#{movie._id}', name='id')
+			.form-group
+				label.col-sm-2.control-label title
+				.col-sm-10
+					input.form-control(type='text', value='#{movie.title}', name='title')
+			.form-group
+				label.col-sm-2.control-label kind
+				.col-sm-10
+					select.form-control(name='kind')
+						each kind in kinds
+							#{kind.name}
+							#{movie.kind}
+							if kind.name == movie.kind
+								option(value='#{kind.name}', selected='selected') #{kind.name}
+							else
+								option(value='#{kind.name}') #{kind.name}
+
+			.form-group
+				label.col-sm-2.control-label dirscription
+				.col-sm-10
+					input.form-control(type='text', value='#{movie.dirs}', name='dirs')
+			.form-group
+				label.col-sm-2.control-label banner
+				.col-sm-10
+					input.form-control(type='text', value='#{movie.banner}', name='banner')
+			.form-group
+				label.col-sm-2.control-label url
+				.col-sm-10
+					input.form-control(type='text', value='#{movie.url}', name='url')
+			.form-group
+				label.col-sm-2.control-label year
+				.col-sm-10
+					input.form-control(type='text', value='#{movie.year}', name='year')
+			.form-group
+				label.col-sm-2.control-label Price
+				.col-sm-10
+					input.form-control(type='text', value='#{movie.sellprice}', name='sellprice')
+			.form-group
+				if movie._id
+					button.btn.btn-default(type='submit') 更新
+				else
+					button.btn.btn-default(type='submit') 发布

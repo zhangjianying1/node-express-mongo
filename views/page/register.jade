@@ -1,0 +1,25 @@
+extend ../layout
+block content
+	.container
+		.row
+			form.form-horizontal(action='/register', method='post' required)
+				input(type='hidden', value='11', name='role')
+				.form-group
+					label.col-sm-2 Name
+					.col-sm-10
+						input.form-control(name='name', type='text', placeholder='Name', value='', required)
+				.form-group
+					label.col-sm-2 Email
+					.col-sm-10
+						input.form-control(name='email', type='email', placeholder='Email', value='', required)
+				.form-group
+					label.col-sm-2 Psdword
+					.col-sm-10
+						input.form-control(name='password', type='password', placeholder='Psdword', value='', required)
+				.form-group
+					label.col-sm-2 repeat Psdword
+					.col-sm-10
+						input.form-control(name='repeatpassword', type='password', placeholder='repeat Psdword', value='', required)
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-default Register

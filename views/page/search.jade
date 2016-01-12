@@ -1,0 +1,17 @@
+extends ../layout
+block content
+	.container
+		h2 #{q}
+		if searchs && search.length
+			.row
+				each item in searchs
+					.col-sm-2
+							a(href='/detail/#{item._id}')
+								img.img-thumbnail(src='#{item.url}')
+						.col-sm-10
+							p
+								a(href='/detail/#{item._id}') #{item.title}
+							p #{item.dirs}
+							p $#{item.sellprice}
+		else
+			p not search result

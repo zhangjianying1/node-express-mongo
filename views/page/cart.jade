@@ -1,0 +1,34 @@
+extend ../layout
+
+block content
+	.container
+		form(action='/movie/buy', method='post')
+			.row
+				each cart in carts
+					table.table.table-bordered
+						thead
+							tr
+								th 
+									input(type='checkbox', value='#{cart._id}', checked) 
+									
+								th(colspan='3') 
+									span orderId : #{cart._id}
+						tbody
+							
+							tr
+								td(width='120px') 
+									input(type='checkbox', value='#{cart._id}', name='cartid', checked)
+								td 
+									.col-sm-2
+										img(src='#{cart.movie.banner}', width='100%')
+									.col-sm-10
+										a(href='/detail/#{cart.movie._id}') #{cart.movie.title}
+										p #{cart.movie.dirs}
+								td #{cart.count}
+								td $#{cart.movie.sellprice}
+								td
+										a(href='/cart/del/#{cart._id}') delete
+					
+			.row
+				.navbar-right
+					button.btn.btn-primary(type='submit') buy

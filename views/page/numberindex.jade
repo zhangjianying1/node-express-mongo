@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+	.container
+		each order in orders
+			.row
+				.col-sm-12
+					orderid: #{order._id}
+			.row
+				.col-sm-2
+					a(href='/detail/#{order.movie && order.movie._id}')
+						img(src='#{order.movie && order.movie.banner}', width='120')
+				.col-sm-4
+					a(href='/detail/#{order.movie && order.movie._id}')
+						h3 #{order.movie && order.movie.title}
+					p.align-left #{order.movie && order.movie.dirs}
+				.col-sm-2
+					
+					if order.pay
+						span paid
+					else 
+						span not paid
+				.col-sm-4
+					if order.comment == '0'
+						a(href='/goodscomment/#{order._id}') comment
+						br
+					if order.takestatus == '0'
+						a(href='/goodscomment/#{order._id}') comfirm take
+						br
+					if order.pay
+						a(href='/order/del/#{order._id}') delete

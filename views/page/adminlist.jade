@@ -1,0 +1,26 @@
+extend ../layout
+block content
+	.container
+		.row
+			table.table.table-hover
+				thead
+					tr
+						th title
+						th dirscription
+						th year
+						th price
+						th pv
+						th edit
+						th delete
+				tbody
+					each item in movie
+						tr
+							td #{item.title}
+							td #{item.dirs}
+							td #{item.year}
+							td #{item.sellprice}
+							td #{item.pv}
+							td
+								a(href='/admin/edit/#{item._id}') edit
+							td 
+								a(href='/admin/del/#{item._id}') delete

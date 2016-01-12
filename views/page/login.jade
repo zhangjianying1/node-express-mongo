@@ -1,0 +1,17 @@
+extend ../layout
+block content
+	.container
+		.row
+			form.form-horizontal(action='/login/in', method='post' required)
+				.form-group
+					label.col-sm-2 Name
+					.col-sm-10
+						input.form-control(name='name', type='text', placeholder='Name', value='', required)
+				.form-group
+					label.col-sm-2 Password
+					.col-sm-10
+						input.form-control(name='password', type='password', placeholder='password', value='', required)
+		
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-default Login

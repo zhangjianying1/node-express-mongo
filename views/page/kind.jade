@@ -1,0 +1,26 @@
+extends ../layout
+block content
+	.container
+		table.table
+			thead
+				tr
+					th Name
+					th edit
+					th delete
+			tbody
+				each kind in kinds
+					tr
+						td #{kind.name}
+						td
+							a(href='/admin/kind/edit/#{kind._id}') edit
+						td
+							a(href='/admin/kind/del/#{kind._id}') delete
+
+		hr
+		form(action='', method='post')
+			.form-group
+				label.col-sm-2 Kind Name
+				.col-sm-10
+					input(type='text', name='name')
+			.form-group
+				button.col-sm-offset-2 sub

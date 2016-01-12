@@ -1,0 +1,21 @@
+extend ../layout
+
+block content
+	.container
+		.row
+			form(action='/shop/subordersuccess', method='post')
+				p 订单提交成功
+				if orders.length > 0
+					each order in orders
+						input(type='hidden', value='#{order._id}', name='order')
+						p 订单编号: #{order._id}
+						p count: #{order.count}
+						p 应付款: #{order.movie.sellprice * order.count}
+				else
+					p 订单编号: #{orders._id}
+					input(type='hidden', value='#{order._id}', name='order')
+					p count: #{order.count}
+					p 应付款: #{orders.movie.sellprice * order.count}
+				
+				应付总额:#{total};
+				button(type='submit') 提交订单
